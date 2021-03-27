@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useCookies } from "react-cookie";
 import { useFormFields } from "../libs/hooksLib";
+import Header from "../Header/Header"
 import "./Login.css";
 
 export default function Login() {
@@ -11,7 +12,7 @@ export default function Login() {
         email: "",
         password: ""
     });
-
+  
     function validateForm() {
         return fields.email.length > 0 && fields.password.length > 0;
     }
@@ -37,6 +38,8 @@ export default function Login() {
 
     return (
         <div className="Login">
+            <Header isLoginPage={true} />
+            <h1>Login Page</h1>
         <Form onSubmit={handleSubmit}>
             <Form.Group size="lg" controlId="email">
                 <Form.Label>Email</Form.Label>
