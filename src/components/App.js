@@ -1,4 +1,5 @@
 import React from "react";
+import Signup from "./Signup/Signup"
 import Login from "./Login/Login";
 import { useCookies } from "react-cookie";
 
@@ -7,7 +8,6 @@ const App = () => {
 
     return (
         <div>
-            <p> {cookies.isAuthenticated} </p>
             <Login />
             <p> {cookies.user}</p>
         </div>

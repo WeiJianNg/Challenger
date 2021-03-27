@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useCookies } from "react-cookie";
+import { useFormFields } from "../libs/hooksLib";
 import "./Login.css";
 
 export default function Login() {
     const [cookies, setCookie] = useCookies()
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [fields, handleFieldChange] = useFormFields({
+        email: "",
+        password: ""
+    });
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return fields.email.length > 0 && fields.password.length > 0;
     }
 
     async function handleSubmit(event) {
         event.preventDefault();
-        setCookie("user", email, {
+        setCookie("user", fields.email, {
             path:"/"
         })
         setCookie("isAuthenticated", true, {
@@ -39,8 +42,8 @@ export default function Login() {
                 <Form.Control
                     autoFocus
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={fields.email}
+                    onChange={handleFieldChange}
                 />
             </Form.Group>
 
@@ -48,8 +51,8 @@ export default function Login() {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                     type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={fields.password}
+                    onChange={handleFieldChange}
                 />`
             </Form.Group>
 
