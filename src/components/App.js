@@ -1,18 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import Login from "./Login/Login";
-import { AppContext } from "./shared_code/login_context.js";
+import { useCookies } from "react-cookie";
 
 const App = () => {
-    const [isAuthenticated, userHasAuthenticated] = useState(false);
-    const [userEmail, setUserEmail] = useState("")
+    const [cookies] = useCookies(["user", "isAuthenticated"]);
 
     return (
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated, userEmail, setUserEmail }}>
-            {userEmail}
         <div>
+            <p> {cookies.isAuthenticated} </p>
             <Login />
+            <p> {cookies.user}</p>
         </div>
-        </AppContext.Provider>
     );
 };
 

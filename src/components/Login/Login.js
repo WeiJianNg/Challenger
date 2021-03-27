@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useAppContext } from "../shared_code/login_context"
+import { useCookies } from "react-cookie";
 import "./Login.css";
 
 export default function Login() {
-    const {userHasAuthenticated} = useAppContext()
-    const {setUserEmail} = useAppContext()
+    const [cookies, setCookie] = useCookies()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -16,7 +15,12 @@ export default function Login() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        setUserEmail(email);
+        setCookie("user", email, {
+            path:"/"
+        })
+        setCookie("isAuthenticated", true, {
+            path: "/"
+        })
         /*
         try {
             await authenticator.login(email, password); // wait for backend API call function
