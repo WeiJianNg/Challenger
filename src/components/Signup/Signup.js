@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useFormFields } from "../libs/hooksLib";
 import "./Signup.css";
+import Header from "../Header/Header";
 
 
 export default function Signup() {
@@ -23,6 +24,7 @@ export default function Signup() {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        // TODO: Add API call to signup
     }
 
     function renderForm() {
@@ -67,6 +69,7 @@ export default function Signup() {
 
     return (
         <div className="Signup">
+            <Header isLoginPage={true} />
             {renderForm()}
         </div>
     );

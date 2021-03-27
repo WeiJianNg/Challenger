@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useCookies } from "react-cookie";
@@ -26,6 +26,7 @@ export default function Login() {
             path: "/"
         });
 
+        // TODO: replace with API call to login
         /*
         try {
             await authenticator.login(email, password); // wait for backend API call function
@@ -39,7 +40,6 @@ export default function Login() {
     return (
         <div className="Login">
             <Header isLoginPage={true} />
-            <h1>Login Page</h1>
         <Form onSubmit={handleSubmit}>
             <Form.Group size="lg" controlId="email">
                 <Form.Label>Email</Form.Label>
