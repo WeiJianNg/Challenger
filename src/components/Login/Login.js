@@ -20,10 +20,11 @@ export default function Login() {
         event.preventDefault();
         setCookie("user", fields.email, {
             path:"/"
-        })
+        });
         setCookie("isAuthenticated", true, {
             path: "/"
-        })
+        });
+
         /*
         try {
             await authenticator.login(email, password); // wait for backend API call function
