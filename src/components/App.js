@@ -1,10 +1,10 @@
 import React from "react";
-import Login from "./Login/Login"
+import Feed from "./Feed/Feed"
 
 const App = () => {
   return (
     <div>
-      <Login />
+      <Feed />
     </div>
   );
 };
