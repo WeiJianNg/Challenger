@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useAppContext } from "../shared_code/login_context"
 import "./Login.css";
 
 export default function Login() {
+    const {userHasAuthenticated} = useAppContext()
+    const {setUserEmail} = useAppContext()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -12,16 +15,16 @@ export default function Login() {
     }
 
     async function handleSubmit(event) {
-      event.preventDefault();
-
-      /*
-      try {
-        await authenticator.login(email, password);
-        alert("Welcome {email}")
-      } catch (e) {
-        alert(e.message);
-      }
-      */
+        event.preventDefault();
+        setUserEmail(email);
+        /*
+        try {
+            await authenticator.login(email, password); // wait for backend API call function
+            userHasAuthenticated(true);
+        } catch (e) {
+            alert(e.message);
+        }
+        */
     }
 
     return (
