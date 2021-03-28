@@ -2,10 +2,12 @@ import React from "react";
 import axios from "axios"
 import { Icon, Button} from "semantic-ui-react"
 
-const UpdateStatus = ({challengeId, isUser, isProposer, user, status, updateStatusCallback}) => {
+const UpdateStatus = ({challengeId, isUser, isProposer, user, 
+    status, updateStatusCallback, handleShowProofModal, handleCloseProofModal,  showProofModal}) => {
     // Sample data to check parent state can be updated
     function completeEventHandler() {
         // TODO - ADD AJAX CALL TO COMPLETE
+        handleShowProofModal()
         const formData = new FormData()
         formData.append('id', challengeId)
         formData.append('status', 0)
@@ -17,7 +19,7 @@ const UpdateStatus = ({challengeId, isUser, isProposer, user, status, updateStat
                 "Content-Type": "multipart/form-data"
             }
         }).then(response => {
-            console.log('success');
+            console.log('success')
             updateStatusCallback()
         })
         .catch(err => {

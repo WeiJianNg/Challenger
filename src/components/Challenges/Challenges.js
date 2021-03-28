@@ -2,7 +2,7 @@ import React from "react";
 
 import CContainer from "../Challenges/CContainer"
 
-const Challenges = ({challenges, cookies, updateStatusCallback}) => {
+const Challenges = ({challenges, cookies, updateStatusCallback, handleShowProofModal, handleCloseProofModal, showProofModal}) => {
   var dummyImgUrl = ["https://images.idgesg.net/images/article/2019/04/google-shift-100794036-large.jpg"]
 
   return (
@@ -20,7 +20,11 @@ const Challenges = ({challenges, cookies, updateStatusCallback}) => {
                     description={challenge.description}
                     status={challenge.status}
                     time={challenge.date_posted.slice(0, 10)}
-                    images={dummyImgUrl}/>
+                    images={dummyImgUrl}
+                    handleShowProofModal={handleShowProofModal} 
+                    handleCloseProofModal={handleCloseProofModal}
+                    showProofModal={showProofModal}
+                  />
           })
         }
       </div>

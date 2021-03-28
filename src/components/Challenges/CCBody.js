@@ -7,12 +7,19 @@ import ImgCarousel from "../ImgCarousel/ImgCarousel"
 import DummyComments from "../Challenges/DummyComments"
 import UpdateStatus from "../Challenges/UpdateStatus"
 
-const CCBody = ({user1, user2, status, description, images, updateStatusCallback, isProposer, isUser, challengeId}) => {
+const CCBody = ({user1, user2, status, description, images, updateStatusCallback, 
+    isProposer, isUser, challengeId, handleShowProofModal, handleCloseProofModal,  showProofModal }) => {
     const panes = [
         { menuItem: 'Details', render: () => 
                 <Tab.Pane>
                     {description}
-                    <UpdateStatus challengeId={challengeId} isUser={isUser} isProposer={isProposer} user={user2} status={status} updateStatusCallback = {updateStatusCallback} />
+                    <UpdateStatus challengeId={challengeId} 
+                                  isUser={isUser} 
+                                  isProposer={isProposer} 
+                                  user={user2} status={status} 
+                                  updateStatusCallback = {updateStatusCallback} 
+                                  handleShowProofModal={handleShowProofModal} 
+                                  handleCloseProofModal={handleCloseProofModal} />
                 </Tab.Pane> 
         },
         { 

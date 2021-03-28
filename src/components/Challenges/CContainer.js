@@ -3,7 +3,9 @@ import {Card} from "react-bootstrap"
 
 import CCBody from "../Challenges/CCBody"
 
-const CContainer = ({user1, user2, challengeTitle, description, status, time, images, updateStatusCallback, isProposer, isUser, id}) => {
+const CContainer = ({user1, user2, challengeTitle, description, status, 
+            time, images, updateStatusCallback, isProposer, isUser, id, 
+            handleShowProofModal, handleCloseProofModal,  showProofModal }) => {
   var statusMap ={
     4: "Failed",
     3: "Declined",
@@ -38,6 +40,9 @@ const CContainer = ({user1, user2, challengeTitle, description, status, time, im
                 images={images} 
                 status={status}
                 updateStatusCallback = {updateStatusCallback}
+                handleShowProofModal={handleShowProofModal} 
+                handleCloseProofModal={handleCloseProofModal}
+                showProofModal={showProofModal}
         />
       <hr style={{marginBottom: "0.5em"}}></hr>
       <div className="challengeFooter d-flex justify-content-end">

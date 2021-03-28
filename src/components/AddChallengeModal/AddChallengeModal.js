@@ -46,7 +46,7 @@ const AddChallengeModal = ({refresh, cookies, show, handleCloseModal, friendList
     var style={ "width": "60%", "marginTop": "1.5vh"}
 
     return (
-        <Modal show={show} size="lg"> 
+        <Modal show={show} size="lg" onHide={handleCloseModal}> 
         <Modal.Header closeButton>
         <Modal.Title>Challenge Someone!</Modal.Title>
         </Modal.Header>

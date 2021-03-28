@@ -4,9 +4,11 @@ import axios from "axios"
 import Header from "../Header/Header";
 import Challenges from "../Challenges/Challenges"
 import AddChallengeModal from "../AddChallengeModal/AddChallengeModal";
+import UploadProofModal from "../UploadProofModal/UploadProofModal";
 
 const Feed = (cookies) => {
   const [showModal, setShowModal] = useState(false)
+  const [showProofModal, setShowProofModal] = useState(false)
   const [challenges, setChallenges] = useState([])  
 
   // eslint-disable-next-line 
@@ -62,6 +64,14 @@ const Feed = (cookies) => {
     setShowModal(false)
   }
 
+  function handleShowProofModal() {
+    setShowProofModal(true)
+  }
+
+  function handleCloseProofModal() {
+    setShowProofModal(false)
+  }
+
   // Example friendlist 
   var friendList = [
     { name: 'test1'},
@@ -83,12 +93,14 @@ const Feed = (cookies) => {
                 <Button variant="primary" onClick={()=>{handleShowModal()}}>+ Challenges</Button>
               </div>
               <hr></hr>
-              <Challenges challenges={challenges} cookies={cookies} updateStatusCallback={updateStatusCallback}/>
+              <Challenges challenges={challenges} cookies={cookies} updateStatusCallback={updateStatusCallback} showProofModal={showProofModal} 
+                  handleShowProofModal={handleShowProofModal} handleCloseProofModal={handleCloseProofModal} />
             </Col>
           </Row>
         </Container>
         <AddChallengeModal refresh={updateStatusCallback} show={showModal} cookies={cookies} handleCloseModal={handleCloseModal} friendList={friendList}/>
-      </div>
+        <UploadProofModal handleCloseModal={handleCloseProofModal} show={showProofModal}/>
+      </div> 
   );
 };
 
