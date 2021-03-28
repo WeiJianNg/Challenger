@@ -5,6 +5,8 @@
 
     .Signup form {
         margin: 0 auto;
-        max-width: 320px;
+        max-width: 400px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }

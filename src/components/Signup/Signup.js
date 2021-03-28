@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useFormFields } from "../libs/hooksLib";
+import { useHistory } from "react-router-dom"
 import "./Signup.css";
+import Header from "../Header/Header";
+import {Card} from "react-bootstrap";
 
 
 export default function Signup() {
+    const history = useHistory();
     const [fields, handleFieldChange] = useFormFields({
         email: "",
         password: "",
@@ -23,10 +27,13 @@ export default function Signup() {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        history.push("/login");
+        // TODO: Add API call to signup
     }
 
     function renderForm() {
         return (
+            <Card style={{marginTop: "10rem", width: "30rem", margin: "0 auto"}} body>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email" size="lg">
                     <Form.Label>Email</Form.Label>
@@ -59,14 +66,16 @@ export default function Signup() {
                     type="submit"
                     disabled={!validateForm()}
                 >
-                    Signup
+                    Sign Up
                 </Button>
             </Form>
+            </Card>
         );
     }
 
     return (
         <div className="Signup">
+            <Header isLoginPage={true} />
             {renderForm()}
         </div>
     );

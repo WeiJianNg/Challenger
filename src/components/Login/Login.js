@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useCookies } from "react-cookie";
 import { useFormFields } from "../libs/hooksLib";
-import Header from "../Header/Header"
-import "./Login.css";
+import { useHistory } from "react-router-dom";
+import Header from "../Header/Header";
+import {Card} from "react-bootstrap";
 
 export default function Login() {
-    const [cookies, setCookie] = useCookies()
+    const [cookies, setCookie] = useCookies();
+    const history = useHistory();
     const [fields, handleFieldChange] = useFormFields({
         email: "",
         password: ""
@@ -25,7 +27,8 @@ export default function Login() {
         setCookie("isAuthenticated", true, {
             path: "/"
         });
-
+        history.push("/feed");
+        // TODO: replace with API call to login
         /*
         try {
             await authenticator.login(email, password); // wait for backend API call function
@@ -37,10 +40,10 @@ export default function Login() {
     }
 
     return (
-        <div className="Login">
-            <Header isLoginPage={true} />
-            <h1>Login Page</h1>
-        <Form onSubmit={handleSubmit}>
+        <div>
+        <Header isLoginPage={true} />
+        <Card style={{marginTop: "10rem", width: "30rem", margin: "0 auto"}} body>
+        <Form onSubmit={handleSubmit} style={{marginTop: "20px", marginBottom: "20px"}}>
             <Form.Group size="lg" controlId="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -61,9 +64,10 @@ export default function Login() {
             </Form.Group>
 
             <Button block size="lg" type="submit" disabled={!validateForm()}>
-                Login
+                Log In
             </Button>
         </Form>
+        </Card>
         </div>
     );
 }
