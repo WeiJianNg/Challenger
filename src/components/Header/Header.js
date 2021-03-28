@@ -22,7 +22,7 @@ const Header = ({isLoginPage}) => {
             {
                 !isLoginPage ?
                     <Navbar bg="dark" variant="dark" className="justify-content-between">
-                        <Navbar.Brand href="#home">Challengers</Navbar.Brand>
+                        <Navbar.Brand href="#home">Challenge-Me!</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
@@ -39,7 +39,7 @@ const Header = ({isLoginPage}) => {
                     </Navbar>
                 :
                     <Navbar bg="dark" variant="dark" className="justify-content-between">
-                        <Navbar.Brand href="#home">Challengers</Navbar.Brand>
+                        <Navbar.Brand href="#home">Challenge-Me!</Navbar.Brand>
                         <Nav className="mr-auto">
                             <Nav.Link href="/signup">Sign Up</Nav.Link>
                             <Nav.Link href="/login">Sign In</Nav.Link>

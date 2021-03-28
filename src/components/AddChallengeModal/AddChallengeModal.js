@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from "axios"
 
-const AddChallengeModal = ({show, handleCloseModal, friendList}) => {
-    const [selectedFiles, setFiles] = useState([])
+const AddChallengeModal = ({refresh, cookies, show, handleCloseModal, friendList}) => {
+    const [selectedFile, setFiles] = useState([])
     const title = useRef(null)
     const description = useRef(null)
     const friendName = useRef(null)
@@ -16,24 +16,34 @@ const AddChallengeModal = ({show, handleCloseModal, friendList}) => {
 
     function submitChallenge() {
         const formData = new FormData()
-        for (var i = 0; i < selectedFiles.length; i++) {
-            formData.append('images', selectedFiles[i])
-        }
+        formData.append('image', selectedFile[0])
         formData.append('title', title.current.children[1].children[0].value)
         formData.append('description', description.current.children[1].children[0].value)
-        formData.append('friendName', friendName.current.children[1].children[0].value)
+        formData.append('user', friendName.current.children[1].children[0].value)
+        formData.append('proposer', cookies.cookies.user)
+        formData.append('status', 1)
         
         axios({
             method: "POST",
-            url: "/",
+            url: "http://127.0.0.1:8000/post_challenges/",
+            responseType: 'arraybuffer',
+            responseEncoding: 'binary',
             data: formData,
             headers: {
                 "Content-Type": "multipart/form-data"
             }
+        }).then(response => {
+            refresh()
+            console.log('success');
+            handleCloseModal()
         })
+        .catch(err => {
+            console.log(err)
+            window.alert("Unable to add challenge. Please Try Again")
+        });
     }
 
-    var style={ "width": "60%"}
+    var style={ "width": "60%", "marginTop": "1.5vh"}
 
     return (
         <Modal show={show} size="lg"> 
@@ -50,10 +60,10 @@ const AddChallengeModal = ({show, handleCloseModal, friendList}) => {
                 options={friendList}
                 style = {style}
                 size="small"
-                getOptionLabel={(option) => option.title}
-                renderInput={(params) => <TextField {...params} label="Select Victim" variant="outlined" ref={friendName} />}
+                getOptionLabel={(option) => option.name}
+                renderInput={(params) => <TextField {...params} label="Select Friend" variant="outlined" ref={friendName} />}
             />
-            <input type="file" name="images" onChange={onChangeHandler} accept="image/*" multiple/>
+            <input style={style} type="file" name="images" onChange={onChangeHandler} accept="image/*" />
         </form>
         </Modal.Body>
         <Modal.Footer>
@@ -67,7 +77,5 @@ const AddChallengeModal = ({show, handleCloseModal, friendList}) => {
     </Modal>
     );
 };
-
-
 
 export default AddChallengeModal;
