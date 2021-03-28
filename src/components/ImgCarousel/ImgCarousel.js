@@ -2,31 +2,36 @@ import React from "react";
 import {Carousel} from "react-bootstrap"
 
 const ImgCarousel = ({images}) => {
-  return (
-    <Carousel fade>
-        <Carousel.Item>
-            <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=First slide&bg=373940"
-            alt="First slide"
-            />
-        </Carousel.Item>
-        <Carousel.Item>
-            <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=Second slide&bg=282c34"
-            alt="Second slide"
-            />
-        </Carousel.Item>
-        <Carousel.Item>
-            <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=Third slide&bg=20232a"
-            alt="Third slide"
-            />
-        </Carousel.Item>
-    </Carousel>
-  );
+    var style = {
+        height: "30vh",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center"
+    }
+
+    var imgStyle = {
+        maxWidth: "100%"
+    }
+
+    return (
+        <Carousel style={{backgroundColor: "black"}}>
+          {images.map((image, index) => {
+              return (
+                <Carousel.Item>
+                    <div className="imageContainer" 
+                        style={style}>
+                            <img
+                                className="d-block h-100"
+                                src={image}
+                                style={imgStyle}
+                                alt={"not found"}
+                            />
+                    </div>
+                </Carousel.Item>
+              )
+          })}
+        </Carousel>
+    );
 };
 
 export default ImgCarousel;
